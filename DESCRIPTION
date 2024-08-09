@@ -1,11 +1,16 @@
 Package: myrrr
-Title: What the Package Does (One Line, Title Case)
+Title: Personal R package
 Version: 0.0.0.9000
 Authors@R: 
-    person("First", "Last", , "first.last@example.com", role = c("aut", "cre"),
-           comment = c(ORCID = "YOUR-ORCID-ID"))
-Description: What the package does (one paragraph).
+    person("Yuki", "Matsuda", , "yuki.matsuda.m10@gmail.com", role = c("aut", "cre"),
+           comment = c(ORCID = "0009-0006-2288-1621"))
+Description: Personal R package.
 License: MIT + file LICENSE
 Encoding: UTF-8
+Imports:
+    dplyr,
+    forcats,
+    ggplot2,
+    rlang
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1

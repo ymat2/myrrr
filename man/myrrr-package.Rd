@@ -4,12 +4,12 @@
 \name{myrrr-package}
 \alias{myrrr}
 \alias{myrrr-package}
-\title{myrrr: What the Package Does (One Line, Title Case)}
+\title{myrrr: Personal R package}
 \description{
-What the package does (one paragraph).
+Personal R package.
 }
 \author{
-\strong{Maintainer}: First Last \email{first.last@example.com} (\href{https://orcid.org/YOUR-ORCID-ID}{ORCID})
+\strong{Maintainer}: Yuki Matsuda \email{yuki.matsuda.m10@gmail.com} (\href{https://orcid.org/0009-0006-2288-1621}{ORCID})
 
 }
 \keyword{internal}
