@@ -12,5 +12,8 @@ Imports:
     forcats,
     ggplot2,
     rlang
+LazyData: true
 Roxygen: list(markdown = TRUE)
 RoxygenNote: 7.3.1
+Depends: 
+    R (>= 2.10)
