@@ -11,9 +11,10 @@ Imports:
     dplyr,
     forcats,
     ggplot2,
+    tidyplots,
     rlang
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.1
+RoxygenNote: 7.3.2
 Depends: 
     R (>= 2.10)
