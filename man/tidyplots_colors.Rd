@@ -46,18 +46,6 @@ colors_discrete_set2
 colors_discrete_set3
 }
 \description{
-Custom color scheme using R4 palette
-
-Custom color scheme using Accent palette
-
-Custom color scheme using Dark 2 palette
-
-Custom color scheme using Paired palette
-
-Custom color scheme using Set 1 palette
-
-Custom color scheme using Set 2 palette
-
-Custom color scheme using Set 3 palette
+Custom discrete color schemes. \verb{See palette.pals()}.
 }
 \keyword{datasets}
