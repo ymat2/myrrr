@@ -46,12 +46,18 @@ colors_discrete_set2
 colors_discrete_set3
 }
 \description{
-Custom color schemes of tidyplots
-}
-\examples{
-(energy \%>\%
-   tidyplot(year, power, color = energy_source) \%>\%
-   add_barstack_absolute() \%>\%
-   adjust_colors(new_colors = colors_discrete_set1)
+Custom color scheme using R4 palette
+
+Custom color scheme using Accent palette
+
+Custom color scheme using Dark 2 palette
+
+Custom color scheme using Paired palette
+
+Custom color scheme using Set 1 palette
+
+Custom color scheme using Set 2 palette
+
+Custom color scheme using Set 3 palette
 }
 \keyword{datasets}
