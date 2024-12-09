@@ -4,7 +4,7 @@
 \alias{annotate}
 \title{Annotate gene name to bed style dataframe}
 \usage{
-annotate(df, seqnames, start, end, colname)
+annotate(df, seqnames, start, end, colname = NULL)
 }
 \arguments{
 \item{df}{A data.frame. with bed style}

@@ -10,7 +10,7 @@
 #' @export
 
 
-annotate = function(df, seqnames, start, end, colname) {
+annotate = function(df, seqnames, start, end, colname = NULL) {
   gr = GenomicRanges::makeGRangesFromDataFrame(
     df,
     keep.extra.columns = TRUE,
@@ -30,20 +30,36 @@ annotate = function(df, seqnames, start, end, colname) {
       minoverlap = 0L,
       type = "any",
       select = "all"
+    ) |> dplyr::as_tibble()
+
+  if (is.null(colname)) {
+    df_merge = dplyr::select(
+      df_merge,
+      .data$gr.seqnames,
+      .data$gr.start,
+      .data$gr.end,
+      .data$gene
     ) |>
-    dplyr::as_tibble() |>
-    dplyr::select(
+      dplyr::rename(
+        seqnames = .data$gr.seqnames,
+        start = .data$gr.start,
+        end = .data$gr.end
+    )
+  } else {
+    df_merge = dplyr::select(
+      df_merge,
       .data$gr.seqnames,
       .data$gr.start,
       .data$gr.end,
       !!dplyr::sym(colname),
       .data$gene
     ) |>
-    dplyr::rename(
-      seqnames = .data$gr.seqnames,
-      start = .data$gr.start,
-      end = .data$gr.end
+      dplyr::rename(
+        seqnames = .data$gr.seqnames,
+        start = .data$gr.start,
+        end = .data$gr.end
     )
+  }
 
   return(df_merge)
 }
