@@ -46,6 +46,6 @@ colors_discrete_set2
 colors_discrete_set3
 }
 \description{
-Custom discrete color schemes. \verb{See palette.pals()}.
+Custom discrete color schemes. See \code{palette.pals()}.
 }
 \keyword{datasets}

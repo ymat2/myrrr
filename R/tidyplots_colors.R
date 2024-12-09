@@ -1,7 +1,7 @@
 #' Custom color schemes of tidyplots
 #'
 #' @description
-#' Custom discrete color schemes. `See palette.pals()`.
+#' Custom discrete color schemes. See `palette.pals()`.
 #'
 #' @rdname tidyplots_colors
 #' @export
