@@ -2,6 +2,8 @@
 % Please edit documentation in R/ggtheme.R
 \name{theme_my}
 \alias{theme_my}
+\alias{common_theme}
+\alias{facet_theme}
 \title{Custom theme for ggplot2}
 \usage{
 theme_my(
@@ -11,6 +13,10 @@ theme_my(
   base_line_size = base_size/22,
   base_rect_size = base_size/22
 )
+
+common_theme()
+
+facet_theme()
 }
 \arguments{
 \item{theme}{"bw" or "test". Specifies theme_*().}
@@ -25,4 +31,8 @@ theme_my(
 }
 \description{
 \code{theme_my()} slightly modifies \code{\link[ggplot2:ggtheme]{ggplot2::theme_bw()}} or \code{\link[ggplot2:ggtheme]{ggplot2::theme_test()}}
+
+Common settings for \code{\link[ggplot2:theme]{ggplot2::theme()}} and myrrr ggtheme
+
+Custom settings for \code{\link[ggplot2:facet_wrap]{ggplot2::facet_wrap()}} and \code{\link[ggplot2:facet_grid]{ggplot2::facet_grid()}}
 }

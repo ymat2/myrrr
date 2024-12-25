@@ -12,19 +12,6 @@
 theme_my = function(theme = "bw", base_size = 11, base_family = "",
                     base_line_size = base_size/22,
                     base_rect_size = base_size/22) {
-  common_theme = function() {
-    ggplot2::theme(
-      panel.background = ggplot2::element_rect(fill = NA, color = NA),
-      axis.title = ggplot2::element_text(colour = "#444444"),
-      axis.text = ggplot2::element_text(colour = "#444444"),
-      axis.line = ggplot2::element_line(colour = "#444444"),
-      axis.ticks = ggplot2::element_line(colour = "#444444"),
-      legend.title = ggplot2::element_text(colour = "#444444"),
-      legend.text = ggplot2::element_text(colour = "#444444"),
-      legend.background = ggplot2::element_rect(fill = NA),
-      legend.key = ggplot2::element_rect(fill = NA)
-    )
-  }
 
   if (theme == "bw") {
     ggplot2::theme_bw(
@@ -44,4 +31,34 @@ theme_my = function(theme = "bw", base_size = 11, base_family = "",
     ) +
       common_theme()
   }
+}
+
+
+#' @description
+#' Common settings for [ggplot2::theme()] and myrrr ggtheme
+#' @rdname ggtheme
+#' @export
+common_theme = function() {
+  ggplot2::theme(
+    panel.background = ggplot2::element_rect(fill = NA, color = NA),
+    axis.title = ggplot2::element_text(colour = "#444444"),
+    axis.text = ggplot2::element_text(colour = "#444444"),
+    axis.line = ggplot2::element_line(colour = "#444444"),
+    axis.ticks = ggplot2::element_line(colour = "#444444"),
+    legend.title = ggplot2::element_text(colour = "#444444"),
+    legend.text = ggplot2::element_text(colour = "#444444"),
+    legend.background = ggplot2::element_rect(fill = NA),
+    legend.key = ggplot2::element_rect(fill = NA)
+  )
+}
+
+
+#' @description
+#' Custom settings for [ggplot2::facet_wrap()] and [ggplot2::facet_grid()]
+#' @rdname ggtheme
+#' @export
+facet_theme = function() {
+  ggplot2::theme(
+    strip.background = ggplot2::element_rect(fill = NA, color = NA)
+  )
 }
