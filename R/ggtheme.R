@@ -20,8 +20,16 @@ theme_my = function(theme = "bw", base_size = 11, base_family = "",
       base_line_size = base_line_size,
       base_rect_size = base_rect_size
     ) +
-      common_theme() +
+      theme_common() +
       ggplot2::theme(panel.grid.minor = ggplot2::element_blank())
+  } else if (theme == "classic") {
+    ggplot2::theme_bw(
+      base_size = base_size,
+      base_family = base_family,
+      base_line_size = base_line_size,
+      base_rect_size = base_rect_size
+    ) +
+      theme_common()
   } else if (theme == "test") {
     ggplot2::theme_test(
       base_size = base_size,
@@ -29,7 +37,7 @@ theme_my = function(theme = "bw", base_size = 11, base_family = "",
       base_line_size = base_line_size,
       base_rect_size = base_rect_size
     ) +
-      common_theme()
+      theme_common()
   }
 }
 
@@ -38,7 +46,7 @@ theme_my = function(theme = "bw", base_size = 11, base_family = "",
 #' Common settings for [ggplot2::theme()] and myrrr ggtheme
 #' @rdname ggtheme
 #' @export
-common_theme = function() {
+theme_common = function() {
   ggplot2::theme(
     panel.background = ggplot2::element_rect(fill = NA, color = NA),
     axis.title = ggplot2::element_text(colour = "#444444"),

@@ -9,9 +9,12 @@ License: MIT + file LICENSE
 Encoding: UTF-8
 Imports:
     dplyr,
+    tibble,
+    stringr,
     forcats,
     ggplot2,
     tidyplots,
+    ape,
     rlang,
     rtracklayer,
     IRanges,

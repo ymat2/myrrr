@@ -2,7 +2,7 @@
 % Please edit documentation in R/ggtheme.R
 \name{theme_my}
 \alias{theme_my}
-\alias{common_theme}
+\alias{theme_common}
 \alias{facet_theme}
 \title{Custom theme for ggplot2}
 \usage{
@@ -14,7 +14,7 @@ theme_my(
   base_rect_size = base_size/22
 )
 
-common_theme()
+theme_common()
 
 facet_theme()
 }
