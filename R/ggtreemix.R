@@ -111,7 +111,7 @@ plot_treemix = function(obj, plot.nodes = FALSE, plot.migration = TRUE, branch.c
                                  alpha = 0.5) +
       ggplot2::geom_point(data = subset(stuff$edges, type == "MIG"),
                           ggplot2::aes(x = from.x, y = from.y, colour = weight)) +
-      ggplot2::scale_colour_gradient2("migration weight", high = "red", mid = "yellow")
+      ggplot2::scale_colour_gradient("Migration weight", high = "#ff3100", low = "#ffdc00")
   }
 
   if (label)
