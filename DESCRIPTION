@@ -14,7 +14,7 @@ Imports:
     stringr,
     forcats,
     ggplot2,
-    tidyplots,
+    tidyselect,
     ape,
     rlang,
     rtracklayer,

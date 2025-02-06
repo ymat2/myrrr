@@ -4,18 +4,18 @@
 \alias{annotate}
 \title{Annotate gene name to bed style dataframe}
 \usage{
-annotate(df, seqnames, start, end, colname = NULL)
+annotate(df, seqnames, start, end, ...)
 }
 \arguments{
 \item{df}{A data.frame. with bed style}
 
-\item{seqnames}{Colname passed to seqnames.field}
+\item{seqnames}{Colname passed to seqnames.field (e.g. \code{CHROM})}
 
-\item{start}{Colname passed to start.field}
+\item{start}{Colname passed to start.field (e.g. \code{BIN_START})}
 
-\item{end}{Colname passed to end.field}
+\item{end}{Colname passed to end.field (e.g. \code{BIN_END})}
 
-\item{colname}{EctraColname to be printed}
+\item{...}{Other arguments passed on to \code{\link[GenomicRanges:makeGRangesFromDataFrame]{GenomicRanges::makeGRangesFromDataFrame()}}}
 }
 \description{
 Annotate gene name to bed style dataframe
