@@ -43,6 +43,7 @@ ggman = function(
 
   tbl = x |>
     dplyr::select(dplyr::all_of(columns)) |>
+    tidyr::drop_na() |>
     dplyr::rename(chr = !!dplyr::sym(chr), bp = !!dplyr::sym(bp), p = !!dplyr::sym(p)) |>
     dplyr::as_tibble()
 
