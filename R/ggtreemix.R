@@ -10,17 +10,18 @@
 #' @export
 read_treemix = function(stem, ...) {
 
-  ff = sapply(c("cov.gz", "modelcov.gz", "treeout.gz", "vertices.gz", "edges.gz", "llik"), function(f) paste0(stem, ".", f))
+  suffix = c("cov.gz", "modelcov.gz", "treeout.gz", "vertices.gz", "edges.gz", "llik")
+  ff = sapply(suffix, function(f) paste0(stem, ".", f))
   if (!all(sapply(ff, file.exists))) {
     stop(stringr::str_c("Can't find all outputs from TreeMix run with prefix '", stem, "'"))
   }
 
-  cov = as.matrix( read.table(gzfile(ff[1]), as.is = TRUE, head = TRUE, quote = "", comment.char = "") )
-  mod = as.matrix( read.table(gzfile(ff[2]), as.is = TRUE, head = TRUE, quote = "", comment.char = "") )
+  cov = as.matrix(read.table(gzfile(ff[1]), as.is = TRUE, header = TRUE, quote = "", comment.char = ""))
+  mod = as.matrix(read.table(gzfile(ff[2]), as.is = TRUE, header = TRUE, quote = "", comment.char = ""))
   resid = mod - cov
   i = upper.tri(resid, diag = FALSE)
-  sse = sum( (resid[i] - mean(resid[i]))^2 )
-  ssm = sum( (mod[i] - mean(mod[i]))^2 )
+  sse = sum((resid[i] - mean(resid[i]))^2)
+  ssm = sum((mod[i] - mean(mod[i]))^2)
   r2 = 1 - sse/ssm
 
   llik.raw = readLines(ff[6], n = 2)[2]
@@ -31,10 +32,9 @@ read_treemix = function(stem, ...) {
   d = stringr::str_c(stem, ".vertices.gz")
   d = read.table(gzfile(d), as.is = TRUE, comment.char = "", quote = "")
   e = stringr::str_c(stem, ".edges.gz")
-  e = read.table(gzfile(e), as.is  = TRUE, comment.char = "", quote = "")
+  e = read.table(gzfile(e), as.is = TRUE, comment.char = "", quote = "")
 
   e[,3] = e[,3]*e[,4]
-  #e[,3] = e[,3]*e[,4]
 
   tree = ape::read.tree(text = readLines(gzfile(ff[3]), n = 1))
 
@@ -42,6 +42,7 @@ read_treemix = function(stem, ...) {
              sse = sse, ssm = ssm, r2 = r2, llik = llik, m = m,
              tree = tree, vertices = d, edges = e)
   obj = .prep.layout(obj)
+
   return(obj)
 
 }
@@ -59,7 +60,6 @@ read_treemix = function(stem, ...) {
   d$y = "NA"
   d$ymin = "NA"
   d$ymax = "NA"
-  d$x = as.numeric(d$x)
   d$y = as.numeric(d$y)
   d$ymin = as.numeric(d$ymin)
   d$ymax = as.numeric(d$ymax)
@@ -86,7 +86,15 @@ read_treemix = function(stem, ...) {
 #' @rdname ggtreemix
 #'
 #' @export
-plot_treemix = function(obj, plot.nodes = FALSE, plot.migration = TRUE, branch.colour = "#333333", branch.width = 0.5, label = TRUE, ...) {
+plot_treemix = function(
+    obj,
+    plot.nodes = FALSE,
+    plot.migration = TRUE,
+    branch.colour = "#333333",
+    branch.width = 0.5,
+    label = TRUE,
+    ...
+  ) {
 
   stuff = obj$layout
   d = obj$vertices
@@ -96,22 +104,33 @@ plot_treemix = function(obj, plot.nodes = FALSE, plot.migration = TRUE, branch.c
   d$xo = d$x + 0.01*tdepth
   stuff$tips$xo = stuff$tips$x + 0.01*tdepth
   p = ggplot2::ggplot(stuff$tips) +
-    ggplot2::geom_segment(data = subset(stuff$edges, type == "NOT_MIG"),
-                          ggplot2::aes(x = from.x, y = from.y, xend = to.x, yend = to.y),
-                          colour = branch.colour,
-                          linewidth = branch.width) +
+    ggplot2::geom_segment(
+      data = subset(stuff$edges, type == "NOT_MIG"),
+      ggplot2::aes(x = from.x, y = from.y, xend = to.x, yend = to.y),
+      colour = branch.colour,
+      linewidth = branch.width
+    ) +
     ggplot2::scale_x_continuous() +
     ggplot2::xlab("\ndrift parameter")
 
   if (plot.migration && nrow(subset(stuff$edges, type == "MIG"))) {
-    p = p + ggplot2::geom_curve(data = subset(stuff$edges, type == "MIG"),
-                                 ggplot2::aes(x = from.x, y = from.y, xend = to.x, yend = to.y, colour = weight),
-                                 curvature = 0, linewidth = 0.5,
-                                 arrow = grid::arrow(length = grid::unit(6, "points"), type = "open"),
-                                 alpha = 0.5) +
-      ggplot2::geom_point(data = subset(stuff$edges, type == "MIG"),
-                          ggplot2::aes(x = from.x, y = from.y, colour = weight)) +
-      ggplot2::scale_colour_gradient("Migration weight", high = "#ff3100", low = "#ffdc00")
+    p = p +
+      ggplot2::geom_curve(
+        data = subset(stuff$edges, type == "MIG"),
+        ggplot2::aes(x = from.x, y = from.y, xend = to.x, yend = to.y, colour = weight),
+        curvature = 0, linewidth = 0.5,
+        arrow = grid::arrow(length = grid::unit(6, "points"), type = "open"),
+        alpha = 0.5
+      ) +
+      ggplot2::geom_point(
+        data = subset(stuff$edges, type == "MIG"),
+        ggplot2::aes(x = from.x, y = from.y, colour = weight)
+      ) +
+      ggplot2::scale_colour_gradient(
+        "Migration weight",
+        high = "#ff3100",
+        low = "#ffdc00"
+      )
   }
 
   if (label)
@@ -122,6 +141,7 @@ plot_treemix = function(obj, plot.nodes = FALSE, plot.migration = TRUE, branch.c
 
   attr(p, "tips") = tibble::as_tibble(stuff$tips)
   attr(p, "edges") = tibble::as_tibble(stuff$edges)
+
   return(p)
 
 }
@@ -129,7 +149,7 @@ plot_treemix = function(obj, plot.nodes = FALSE, plot.migration = TRUE, branch.c
 #' Original treemix like plot theme
 #'
 #' @rdname ggtreemix
-#' @param ... passed to [ggplot2::theme_bw].
+#' @param ... passed to [ggplot2::theme_bw()].
 #'
 #' @export
 theme_treemix = function(...) {
