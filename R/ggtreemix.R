@@ -56,13 +56,10 @@ read_treemix = function(stem, ...) {
   for(i in seq_along(flip)) {
     d = .flip.node(d, flip[i])
   }
-  d$x = "NA"
-  d$y = "NA"
-  d$ymin = "NA"
-  d$ymax = "NA"
-  d$y = as.numeric(d$y)
-  d$ymin = as.numeric(d$ymin)
-  d$ymax = as.numeric(d$ymax)
+  d$x = NA
+  d$y = NA
+  d$ymin = NA
+  d$ymax = NA
 
   d = .set.y.coords(d)
   d = .set.x.coords(d, e)
