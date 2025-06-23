@@ -79,6 +79,7 @@ read_treemix = function(stem, ...) {
 #' @param plot.migration Whether to plot migration edges
 #' @param branch.colour Color of tree branch
 #' @param branch.width Linewidth of tree branch
+#' @param arrow.width Linewidth of migration edges
 #' @param label Whether to show tip names
 #' @rdname ggtreemix
 #'
@@ -89,6 +90,7 @@ plot_treemix = function(
     plot.migration = TRUE,
     branch.colour = "#333333",
     branch.width = 0.5,
+    arrow.width = 0.5,
     label = TRUE,
     ...
   ) {
@@ -115,14 +117,14 @@ plot_treemix = function(
       ggplot2::geom_curve(
         data = subset(stuff$edges, type == "MIG"),
         ggplot2::aes(x = from.x, y = from.y, xend = to.x, yend = to.y, colour = weight),
-        curvature = 0, linewidth = 0.5,
+        curvature = 0, linewidth = arrow.width,
         arrow = grid::arrow(length = grid::unit(6, "points"), type = "open"),
         alpha = 0.5
       ) +
-      ggplot2::geom_point(
-        data = subset(stuff$edges, type == "MIG"),
-        ggplot2::aes(x = from.x, y = from.y, colour = weight)
-      ) +
+      # ggplot2::geom_point(
+      #   data = subset(stuff$edges, type == "MIG"),
+      #   ggplot2::aes(x = from.x, y = from.y, colour = weight)
+      # ) +
       ggplot2::scale_colour_gradient(
         "Migration weight",
         high = "#ff3100",
