@@ -13,6 +13,7 @@
 #' @param title Title of the plot
 #' @param plot Boolean to show plot
 #' @param ylim Ranges of y-axis
+#' @param base_size Passed on to [ggplot2::theme_classic()]
 #' @param ... Other arguments passed on to [ggplot2::geom_point()]
 #' @importFrom rlang .data
 #' @rdname ggman
@@ -29,6 +30,7 @@ ggman = function(
     title = NULL,
     plot = TRUE,
     ylim = NULL,
+    base_size = 11,
     ...
   ) {
   columns <- c(chr, bp, p)
@@ -75,10 +77,9 @@ ggman = function(
     ggplot2::scale_y_continuous(expand = c(0, 0), limits = ylim) +
     ggplot2::scale_color_manual(values = rep(col, unique(length(axis_set$chr)))) +
     ggplot2::labs(x = xlab, y = ylab, title = title) +
-    ggplot2::theme_classic(base_size = 16) +
+    ggplot2::theme_classic(base_size = base_size) +
     ggplot2::theme(
       legend.position = "none",
-      panel.grid.major.y = ggplot2::element_line(colour = "#cccccc", linewidth = 1),
       axis.line.x = ggplot2::element_blank(),
       plot.title = ggplot2::element_text(hjust = 0.5)
     )
