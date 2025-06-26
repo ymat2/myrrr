@@ -73,7 +73,11 @@ ggman = function(
   g = ggplot2::ggplot(tbl4plot) +
     ggplot2::aes(x = .data$bp_cum, y = p, color = forcats::as_factor(chr)) +
     ggplot2::geom_point(...) +
-    ggplot2::scale_x_continuous(label = axis_set$chr, breaks = axis_set$center) +
+    ggplot2::scale_x_continuous(
+      label = axis_set$chr,
+      breaks = axis_set$center,
+      expand = ggplot2::expansion(mult = c(.01, .01))
+      ) +
     ggplot2::scale_y_continuous(expand = c(0, 0), limits = ylim) +
     ggplot2::scale_color_manual(values = rep(col, unique(length(axis_set$chr)))) +
     ggplot2::labs(x = xlab, y = ylab, title = title) +
