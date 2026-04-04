@@ -16,6 +16,7 @@ plot_treemix(
   plot.migration = TRUE,
   branch.colour = "#333333",
   branch.width = 0.5,
+  arrow.width = 0.5,
   label = TRUE,
   ...
 )
@@ -36,6 +37,8 @@ theme_treemix(...)
 \item{branch.colour}{Color of tree branch}
 
 \item{branch.width}{Linewidth of tree branch}
+
+\item{arrow.width}{Linewidth of migration edges}
 
 \item{label}{Whether to show tip names}
 }

@@ -1,7 +1,7 @@
 Package: myrrr
 Title: Personal R package
 Version: 0.0.0.9000
-Authors@R: 
+Authors@R:
     person("Yuki", "Matsuda", , "yuki.matsuda.m10@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0009-0006-2288-1621"))
 Description: Personal R package.
@@ -16,12 +16,9 @@ Imports:
     ggplot2,
     tidyselect,
     ape,
-    rlang,
-    rtracklayer,
-    IRanges,
-    GenomicRanges
+    rlang
 LazyData: true
 Roxygen: list(markdown = TRUE)
-RoxygenNote: 7.3.2
-Depends: 
+RoxygenNote: 7.3.3
+Depends:
     R (>= 2.10)
