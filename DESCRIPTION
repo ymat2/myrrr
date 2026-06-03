@@ -14,7 +14,6 @@ Imports:
     stringr,
     forcats,
     ggplot2,
-    tidyselect,
     ape,
     rlang
 LazyData: true
