@@ -26,7 +26,7 @@ theme_treemix(...)
 \arguments{
 \item{stem}{filename stem (\code{-o} from command-line) for TreeMix output}
 
-\item{...}{passed to \code{\link[ggplot2:ggtheme]{ggplot2::theme_bw()}}.}
+\item{...}{passed to \code{\link[ggplot2:theme_bw]{ggplot2::theme_bw()}}.}
 
 \item{obj}{treemix result parsed by \code{read_treemix()}}
 

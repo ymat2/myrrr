@@ -11,7 +11,6 @@
 #' @param xlab X-axis label
 #' @param ylab Y-axis label
 #' @param title Title of the plot
-#' @param plot Boolean to show plot
 #' @param ylim Ranges of y-axis
 #' @param base_size Passed on to [ggplot2::theme_classic()]
 #' @param ... Other arguments passed on to [ggplot2::geom_point()]
@@ -28,7 +27,6 @@ ggman = function(
     xlab = "Chromosome",
     ylab = "P",
     title = NULL,
-    plot = TRUE,
     ylim = NULL,
     base_size = 11,
     ...
@@ -98,9 +96,6 @@ ggman = function(
     )
   }
 
-  if (plot) {
-    print(g)
-  } else {
-    g
-  }
+  g
+
 }

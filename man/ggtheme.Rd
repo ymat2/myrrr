@@ -30,7 +30,7 @@ facet_theme()
 \item{base_rect_size}{base size for rect elements}
 }
 \description{
-\code{theme_my()} slightly modifies \code{\link[ggplot2:ggtheme]{ggplot2::theme_bw()}} or \code{\link[ggplot2:ggtheme]{ggplot2::theme_test()}}
+\code{theme_my()} slightly modifies \code{\link[ggplot2:theme_bw]{ggplot2::theme_bw()}} or \code{\link[ggplot2:theme_test]{ggplot2::theme_test()}}
 
 Common settings for \code{\link[ggplot2:theme]{ggplot2::theme()}} and myrrr ggtheme
 

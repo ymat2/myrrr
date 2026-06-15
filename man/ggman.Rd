@@ -16,7 +16,6 @@ ggman(
   xlab = "Chromosome",
   ylab = "P",
   title = NULL,
-  plot = TRUE,
   ylim = NULL,
   base_size = 11,
   ...
@@ -45,11 +44,9 @@ ggman(
 
 \item{title}{Title of the plot}
 
-\item{plot}{Boolean to show plot}
-
 \item{ylim}{Ranges of y-axis}
 
-\item{base_size}{Passed on to \code{\link[ggplot2:ggtheme]{ggplot2::theme_classic()}}}
+\item{base_size}{Passed on to \code{\link[ggplot2:theme_classic]{ggplot2::theme_classic()}}}
 
 \item{...}{Other arguments passed on to \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}}}
 }
