@@ -2,6 +2,7 @@
 
 export(facet_theme)
 export(ggman)
+export(label_exp)
 export(plot_treemix)
 export(read_treemix)
 export(theme_common)
