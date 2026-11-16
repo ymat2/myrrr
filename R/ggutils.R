@@ -13,6 +13,6 @@ label_exp = function(digits = 2, ...) {
       stringr::str_replace_all("^(.*)e", "'\\1'e") |>
       stringr::str_replace_all("e", "%*%10^") |>
       stringr::str_replace_all("\\+", "")
-    ggplot2:::parse_safe(text = x)
+    parse(text = x)
   }
 }
