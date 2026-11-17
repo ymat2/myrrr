@@ -1,6 +1,6 @@
 Package: myrrr
 Title: Personal R package
-Version: 0.0.0.9000
+Version: 0.0.0.9001
 Authors@R:
     person("Yuki", "Matsuda", , "yuki.matsuda.m10@gmail.com", role = c("aut", "cre"),
            comment = c(ORCID = "0009-0006-2288-1621"))
