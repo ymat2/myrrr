@@ -11,7 +11,6 @@ ggman(
   p = "P",
   col = c("#1f78b4", "#a6cee3"),
   chrlabs = c(1:10, 12, 14, 17, 20, 24, 36),
-  logp = FALSE,
   xlab = "Chromosome",
   ylab = "P",
   title = NULL,
@@ -32,8 +31,6 @@ ggman(
 \item{col}{Vector of color codes of points}
 
 \item{chrlabs}{Labels of chromosomes to be printed}
-
-\item{logp}{Boolean to use log-scaled y-axis}
 
 \item{xlab}{X-axis label}
 

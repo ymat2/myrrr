@@ -81,6 +81,7 @@ read_treemix = function(stem, ...) {
 #' @param branch.width Linewidth of tree branch
 #' @param arrow.width Linewidth of migration edges
 #' @param label Whether to show tip names
+#' @importFrom rlang .data
 #' @rdname ggtreemix
 #'
 #' @export
@@ -104,19 +105,21 @@ plot_treemix = function(
   stuff$tips$xo = stuff$tips$x + 0.01*tdepth
   p = ggplot2::ggplot(stuff$tips) +
     ggplot2::geom_segment(
-      data = subset(stuff$edges, type == "NOT_MIG"),
-      ggplot2::aes(x = from.x, y = from.y, xend = to.x, yend = to.y),
+      #data = subset(stuff$edges, type == "NOT_MIG"),
+      data = stuff$edges |> dplyr::filter(.data$type == "NOT_MIG"),
+      ggplot2::aes(x = .data$from.x, y = .data$from.y, xend = .data$to.x, yend = .data$to.y),
       colour = branch.colour,
       linewidth = branch.width
     ) +
     ggplot2::scale_x_continuous() +
     ggplot2::xlab("\ndrift parameter")
 
-  if (plot.migration && nrow(subset(stuff$edges, type == "MIG"))) {
+  if (plot.migration && nrow(stuff$edges |> dplyr::filter(.data$type == "NOT_MIG"))) {
     p = p +
       ggplot2::geom_curve(
-        data = subset(stuff$edges, type == "MIG"),
-        ggplot2::aes(x = from.x, y = from.y, xend = to.x, yend = to.y, colour = weight),
+        #data = subset(stuff$edges, type == "MIG"),
+        data = stuff$edges |> dplyr::filter(.data$type == "MIG"),
+        ggplot2::aes(x = .data$from.x, y = .data$from.y, xend = .data$to.x, yend = .data$to.y, colour = .data$weight),
         curvature = 0, linewidth = arrow.width,
         arrow = grid::arrow(length = grid::unit(6, "points"), type = "open"),
         alpha = 0.5
@@ -133,10 +136,10 @@ plot_treemix = function(
   }
 
   if (label)
-    p = p + ggplot2::geom_text(ggplot2::aes(x = xo, y = y, label = pop), hjust = 0)
+    p = p + ggplot2::geom_text(ggplot2::aes(x = .data$xo, y = .data$y, label = .data$pop), hjust = 0)
 
   if (plot.nodes)
-    p = p + ggplot2::geom_point(data = d, ggplot2::aes(x = x, y = y))
+    p = p + ggplot2::geom_point(data = d, ggplot2::aes(x = .data$x, y = .data$y))
 
   attr(p, "tips") = tibble::as_tibble(stuff$tips)
   attr(p, "edges") = tibble::as_tibble(stuff$edges)
