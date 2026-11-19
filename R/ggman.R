@@ -6,13 +6,12 @@
 #' @param p Statistics for the vertical axis
 #' @param col Vector of color codes of points
 #' @param chrlabs Labels of chromosomes to be printed
-#' @param sigline Numeric value for a significant line
 #' @param logp Boolean to use log-scaled y-axis
 #' @param xlab X-axis label
 #' @param ylab Y-axis label
 #' @param title Title of the plot
 #' @param ylim Ranges of y-axis
-#' @param base_size Passed on to [ggplot2::theme_classic()]
+#' @param base_size Passed on to [theme_classic2()]
 #' @param ... Other arguments passed on to [ggplot2::geom_point()]
 #' @importFrom rlang .data
 #' @rdname ggman
@@ -22,8 +21,7 @@ ggman = function(
     x, chr = "CHR", bp = "POS", p = "P",
     col = c("#1f78b4", "#a6cee3"),
     chrlabs = c(1:10, 12, 14, 17, 20, 24, 36),
-    sigline = NULL,
-    logp = TRUE,
+    logp = FALSE,
     xlab = "Chromosome",
     ylab = "P",
     title = NULL,
@@ -62,6 +60,14 @@ ggman = function(
     dplyr::summarize(center = mean(.data$bp_cum)) |>
     dplyr::mutate(chr = dplyr::if_else(chr %in% chrlabs, as.character(chr), ""))
 
+  scale_y_internal = function(logp = FALSE, ...) {
+    if (logp) {
+      ggplot2::scale_y_log10(...)
+    } else {
+      ggplot2::scale_y_continuous(...)
+    }
+  }
+
   if (is.null(ylim)) {
     ymin = 0
     ymax = max(tbl4plot$p)*1.1
@@ -76,25 +82,14 @@ ggman = function(
       breaks = axis_set$center,
       expand = ggplot2::expansion(mult = c(.02, .02))
       ) +
-    ggplot2::scale_y_continuous(expand = c(0, 0), limits = ylim) +
+    scale_y_internal(logp = logp, expand = c(0, 0), limits = ylim) +
     ggplot2::scale_color_manual(values = rep(col, unique(length(axis_set$chr)))) +
     ggplot2::labs(x = xlab, y = ylab, title = title) +
-    ggplot2::theme_classic(base_size = base_size) +
+    theme_classic2(base_size = base_size) +
     ggplot2::theme(
       legend.position = "none",
-      axis.line.x = ggplot2::element_blank(),
-      plot.title = ggplot2::element_text(hjust = 0.5)
+      axis.line.x = ggplot2::element_blank()
     )
-
-  if (!is.null(sigline)) {
-    g = g + ggplot2::geom_hline(
-      yintercept = sigline,
-      color = "#8b0000",
-      alpha = .75,
-      linetype = "dotted",
-      linewidth = 2
-    )
-  }
 
   g
 

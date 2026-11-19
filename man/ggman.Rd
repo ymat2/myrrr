@@ -11,8 +11,7 @@ ggman(
   p = "P",
   col = c("#1f78b4", "#a6cee3"),
   chrlabs = c(1:10, 12, 14, 17, 20, 24, 36),
-  sigline = NULL,
-  logp = TRUE,
+  logp = FALSE,
   xlab = "Chromosome",
   ylab = "P",
   title = NULL,
@@ -34,8 +33,6 @@ ggman(
 
 \item{chrlabs}{Labels of chromosomes to be printed}
 
-\item{sigline}{Numeric value for a significant line}
-
 \item{logp}{Boolean to use log-scaled y-axis}
 
 \item{xlab}{X-axis label}
@@ -46,7 +43,7 @@ ggman(
 
 \item{ylim}{Ranges of y-axis}
 
-\item{base_size}{Passed on to \code{\link[ggplot2:theme_classic]{ggplot2::theme_classic()}}}
+\item{base_size}{Passed on to \code{\link[=theme_classic2]{theme_classic2()}}}
 
 \item{...}{Other arguments passed on to \code{\link[ggplot2:geom_point]{ggplot2::geom_point()}}}
 }
